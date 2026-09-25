@@ -1,0 +1,190 @@
+{
+  "brand_identity": {
+    "name": "SILVERSY®",
+    "tagline": "THE NEW SILVER",
+    "material": "92.5 Sterling Silver Jewellery",
+    "instagram": "@silversy_co",
+    "store_location": "Sirhind, Punjab, India",
+    "aesthetic_tone": "MODERN, EDITORIAL, MINIMAL, LUXURY, FASHION, SILVER, CINEMATIC, SOFT, PREMIUM",
+    "emotional_goal": "Tactile intimacy, modern heirloom elegance, quiet luxury silver sheen against serene warm alabaster and cream environments."
+  },
+  "color_system": {
+    "archetype": "LIGHT EDITORIAL LUXURY",
+    "backgrounds": {
+      "primary": "#F5F1EA",
+      "secondary": "#F1ECE4",
+      "canvas": "#FAF9F6",
+      "surface_card": "#FFFFFF",
+      "surface_warm": "#FAF8F5"
+    },
+    "typography": {
+      "primary": "#151515",
+      "heading": "#202020",
+      "body": "#383838",
+      "muted": "#75726D",
+      "light_accent": "#A39E96"
+    },
+    "accents": {
+      "silver_reflection": "linear-gradient(135deg, #E6E6E6 0%, #FFFFFF 50%, #B8B8B8 100%)",
+      "silver_border": "#E5DFD5",
+      "hover_border": "#C0C0C0",
+      "subtle_champagne": "#E8E2D8"
+    },
+    "rules": [
+      "NO dark or black backgrounds for main sections — maintain light luxury warmth",
+      "Silver jewellery elements must radiate with subtle polished sheen over warm neutral backgrounds",
+      "Avoid heavy gold tones; retain strict focus on 92.5 pure silver finish",
+      "All card containers with borders must include internal padding (p-6 to p-8) to avoid text collision"
+    ]
+  },
+  "typography": {
+    "font_families": {
+      "headings": "'Cormorant Garamond', 'Playfair Display', serif",
+      "body_and_ui": "'Manrope', 'Outfit', 'Plus Jakarta Sans', sans-serif",
+      "accent_mono": "'JetBrains Mono', monospace"
+    },
+    "scale": {
+      "giant_hero_masthead": "text-[14vw] sm:text-[15vw] lg:text-[16vw] font-serif uppercase tracking-tight leading-none",
+      "h1_section_title": "text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight leading-none text-[#202020]",
+      "h2_subtitle": "text-2xl sm:text-3xl lg:text-4xl font-serif italic text-[#383838]",
+      "h3_card_title": "text-lg sm:text-xl font-serif text-[#151515]",
+      "body_text": "text-sm sm:text-base text-[#383838] leading-relaxed font-sans",
+      "micro_label": "text-[10px] sm:text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#75726D]"
+    },
+    "rules": [
+      "Headings MUST use Editorial Serif for identity and impact",
+      "Subtitles & category tags use wide letter-spacing tracking-[0.25em]",
+      "Typography sometimes intentionally overlaps or extends beyond containers in hero and editorial callouts"
+    ]
+  },
+  "hero_experience_architecture": {
+    "pinned_scrub_experience": {
+      "description": "Cinematic scroll-controlled pinned container with video frame scrubbing or video time scrub",
+      "video_subject": "White sculptural mannequin hand wearing silver rings on pure white background (1920x1080)",
+      "masthead_behavior": "Giant SILVERSY serif wordmark occupying ~80% viewport width, shrinking and moving to sticky header on scroll",
+      "elements": [
+        "Left supporting text: THE NEW SILVER | 92.5 STERLING SILVER JEWELLERY",
+        "Center CTA: EXPLORE COLLECTION →",
+        "Right column: MORE THAN JEWELLERY A STORY + Category quick nav (RINGS, EARRINGS, CHAINS, BRACELETS, KADA, PAYAL, BROOCH)",
+        "Bottom timestamp badge: [ SINCE 2017 ]"
+      ]
+    }
+  },
+  "sections_breakdown": [
+    {
+      "id": "01_about",
+      "title": "MORE THAN JEWELLERY.",
+      "layout": "Editorial 2-column split with large lifestyle photography and smooth scroll parallax",
+      "content": "At Silversy, jewellery is more than an accessory. It is a reflection of identity, expression and the moments we choose to remember.",
+      "cta": "OUR STORY →"
+    },
+    {
+      "id": "02_925_silver",
+      "title": "CRAFTED IN 925",
+      "layout": "Metallic highlight feature with huge reflective 925 typography and 3 core pillars: PURITY, CRAFT, TIMELESS DESIGN",
+      "content": "92.5 STERLING SILVER — High polish purity, hand-finished perfection."
+    },
+    {
+      "id": "03_category_discovery",
+      "title": "EXPLORE THE COLLECTION",
+      "categories": ["RINGS", "EARRINGS", "CHAINS", "BRACELETS", "KADA", "PAYAL", "BROOCH"],
+      "layout": "Asymmetric bento grid on desktop with hover image zoom, subtle silver reflection & smooth arrow transition; horizontal scroll on mobile."
+    },
+    {
+      "id": "04_signature_pieces",
+      "title": "SIGNATURE PIECES",
+      "layout": "6–8 curated product cards with category, title, price badge ('PRICE ON REQUEST' or item price), and 'VIEW PIECE →' trigger opening modal.",
+      "card_style": "Sharp rectangular borders (border-[#E5DFD5]), subtle image zoom, light cream surface, no heavy shadows"
+    },
+    {
+      "id": "05_look_closer",
+      "title": "LOOK CLOSER. DETAILS MATTER.",
+      "layout": "Cinematic single large silver piece feature with interactive 360-degree rotation view, zoom toggle, and interactive detail hotspots (925 SILVER, SIGNATURE FORM, CRAFTED DETAIL)."
+    },
+    {
+      "id": "06_craft_detail",
+      "title": "THE ART OF DETAIL",
+      "layout": "Editorial split with macro silver detail shot and key philosophy quote",
+      "content": "Every piece should balance presence and simplicity — jewellery designed to complement the person wearing it.",
+      "cta": "DISCOVER THE COLLECTION →"
+    },
+    {
+      "id": "07_most_loved",
+      "title": "MOST LOVED CREATIONS",
+      "layout": "4-column editorial grid (2-column on mobile) featuring popular items with quick enquiry trigger."
+    },
+    {
+      "id": "08_instagram_world",
+      "title": "THE SILVERSY WORLD",
+      "handle": "@silversy_co",
+      "layout": "Editorial masonry lifestyle gallery with subtle hover overlay and direct Instagram link.",
+      "cta": "FOLLOW @SILVERSY_CO →"
+    },
+    {
+      "id": "09_visit_silversy",
+      "title": "VISIT SILVERSY",
+      "location": "Sirhind, Punjab",
+      "subtitle": "Discover the collection in person.",
+      "buttons": ["GET DIRECTIONS →", "WHATSAPP US →"]
+    },
+    {
+      "id": "10_final_cta",
+      "title": "FIND YOUR SIGNATURE PIECE.",
+      "subtitle": "Discover the world of 92.5 sterling silver jewellery.",
+      "buttons": ["EXPLORE COLLECTION →", "FOLLOW ON INSTAGRAM →"]
+    },
+    {
+      "id": "footer",
+      "layout": "Minimal luxury footer with large oversized SILVERSY® logo watermark, category columns, store info, and social links.",
+      "copyright": "© 2026 SILVERSY® All rights reserved."
+    }
+  ],
+  "image_urls": {
+    "rings": [
+      "https://images.unsplash.com/photo-1621311628038-01cd988520c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1590703160323-ac5d3fc14089?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1620135104013-1abdff4b1ca7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHw0fHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
+    ],
+    "earrings": [
+      "https://images.unsplash.com/photo-1611653842967-39eb011b2ca3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "chains_and_necklaces": [
+      "https://images.unsplash.com/photo-1616294099799-dab525ec05c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1599459183540-09f1fd687a2e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHw0fHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
+    ],
+    "bracelets_and_kada": [
+      "https://images.unsplash.com/photo-1605884878538-6468614df578?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1621311628038-01cd988520c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
+    ],
+    "macro_detail": [
+      "https://images.unsplash.com/photo-1590703160323-ac5d3fc14089?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
+    ],
+    "editorial_lifestyle": [
+      "https://images.unsplash.com/photo-1611653842967-39eb011b2ca3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1616294099799-dab525ec05c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "motion_and_microinteractions": {
+    "lenis_smooth_scroll": "Enable smooth momentum scrolling globally for cinematic feel",
+    "framer_motion_variants": {
+      "stagger_children": 0.08,
+      "fade_up_distance": 24,
+      "duration": 0.8,
+      "ease": [0.25, 1, 0.5, 1]
+    },
+    "metallic_reflections": "Subtle Three.js or CSS linear shimmer reflecting light over '925' and signature headings",
+    "hover_effects": "Image zoom transform scale-105, border color transition to #C0C0C0, text arrow translate-x-1"
+  },
+  "testing_and_accessibility": {
+    "data_testid_policy": "All key interactive buttons, modals, category links, product cards, WhatsApp/Instagram CTAs MUST include kebab-case data-testid attributes (e.g. data-testid='hero-explore-btn', data-testid='product-card-1', data-testid='whatsapp-enquire-btn').",
+    "reduced_motion": "Wrap non-essential scroll animations with prefers-reduced-motion check or simple CSS fallback",
+    "contrast_check": "All text elements exceed 4.5:1 APCA contrast ratio against warm background #F5F1EA / #FAF9F6"
+  },
+  "instructions_to_main_agent": {
+    "file_type": "React JS (.js files, not .tsx)",
+    "toasts": "Use Sonner toast notifications (located in src/components/ui/sonner.jsx or similar) for enquiry confirmation",
+    "modal_feature": "Product click MUST trigger an elegant detail modal showcasing product imagery, 92.5 hallmark details, 'ENQUIRE ON WHATSAPP' button (pre-filled text), and 'VIEW ON INSTAGRAM' button",
+    "header_morph": "Ensure sticky navigation stays clean with high z-index and semi-opaque background backdrop-blur-md bg-[#FAF9F6]/85"
+  }
+}
