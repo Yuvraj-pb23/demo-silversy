@@ -27,11 +27,13 @@ function cutGeometry(emerald) {
 
 const EMERALD = cutGeometry(true);
 const BRILLIANT = cutGeometry(false);
-const SILVER = new THREE.MeshStandardMaterial({ color: "#eef1f4", metalness: 1, roughness: 0.115, envMapIntensity: 1.5 });
+const SILVER = new THREE.MeshStandardMaterial({ color: "#dcdfe4", metalness: 1, roughness: 0.17, envMapIntensity: 1.85 });
 const DIAMOND = new THREE.MeshPhysicalMaterial({
-    color: "#f6fbff", metalness: 0.05, roughness: 0.025, transmission: 0.72,
-    thickness: 0.012, ior: 2.417, dispersion: 0.035, envMapIntensity: 2.2,
+    color: "#ffffff", metalness: 0, roughness: 0.02, transmission: 0.35,
+    thickness: 0.02, ior: 2.417, dispersion: 0.055, envMapIntensity: 3.2,
     clearcoat: 1, clearcoatRoughness: 0, specularIntensity: 1,
+    iridescence: 0.42, iridescenceIOR: 1.9, iridescenceThicknessRange: [120, 420],
+    attenuationColor: new THREE.Color("#eaf3ff"), attenuationDistance: 0.5,
 });
 
 function createGlint() {
