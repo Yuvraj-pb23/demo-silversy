@@ -101,3 +101,34 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "jwelery on the hand is very blurry make it hd clear stones should be shining same on bracelet. User approved keeping original hand movement and design unchanged."
+frontend:
+  - task: "Hero jewellery clarity and stone highlights"
+    implemented: true
+    working: NA
+    file: "frontend/src/components/Hero.jsx; scripts/enhance_hero.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "Rings and bracelet look blurry in supplied screenshot; stones should shine."
+      - working: NA
+        agent: "main"
+        comment: "Confirmed original 1920x1080 4Mb/s source was reduced to 1280x720 185Kb/s WebM or 720px mobile. Existing mask starting at 76% erased bracelet contrast. Rebuilt 86 original frames with feathered jewellery-only sharpening/local contrast and existing specular highlight enhancement; 1920x1080 desktop / 1080px-square mobile H264 CRF16 GOP6. Matched first-frame HD posters; changed mask to 96%, removed global blown-out CSS grade. No synthetic jewellery or new movement. Full source softness cannot be undone."
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+test_plan:
+  current_focus:
+    - "Hero jewellery clarity and stone highlights"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+agent_communication:
+  - agent: "main"
+    message: "Test actual video source dimensions/loading, forward/reverse scroll, masthead morph/nav, mobile/tablet/desktop layouts, source switch on breakpoint and reduced-motion HD poster. Compare first-frame ring and bracelet crops against old assets; check natural highlights with no halos/white-box regressions. No auth or backend changes."

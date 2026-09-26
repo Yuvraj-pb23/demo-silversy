@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -19,6 +19,15 @@ export default function Hero() {
     const rightRef = useRef(null);
     const sinceRef = useRef(null);
     const hintRef = useRef(null);
+    const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 767px)").matches);
+    const poster = mobile ? "/assets/hero-poster-mobile-hd.jpg" : "/assets/hero-poster-hd.jpg";
+
+    useEffect(() => {
+        const query = window.matchMedia("(max-width: 767px)");
+        const onChange = (event) => setMobile(event.matches);
+        query.addEventListener("change", onChange);
+        return () => query.removeEventListener("change", onChange);
+    }, []);
 
     useEffect(() => {
         if (reduced) return undefined;
@@ -30,8 +39,8 @@ export default function Hero() {
         const onMeta = () => {
             duration = video.duration || 0;
         };
+        video.addEventListener("loadedmetadata", onMeta);
         if (video.readyState >= 1) onMeta();
-        else video.addEventListener("loadedmetadata", onMeta);
 
         const tick = () => {
             if (!duration) return;
@@ -127,14 +136,15 @@ export default function Hero() {
             <div
                 className="pointer-events-none absolute inset-x-0 top-[16%] z-[2] flex justify-center mix-blend-multiply md:top-[12%]"
                 style={{
-                    WebkitMaskImage: "linear-gradient(to bottom, black 76%, transparent 99%)",
-                    maskImage: "linear-gradient(to bottom, black 76%, transparent 99%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 96%, transparent 100%)",
+                    maskImage: "linear-gradient(to bottom, black 96%, transparent 100%)",
                 }}
             >
-                <div ref={wrapRef} className="hero-video-grade will-change-transform">
+                <div ref={wrapRef} className="will-change-transform">
                     {reduced ? (
                         <img
-                            src="/assets/hero-still.jpg"
+                            data-testid="hero-still"
+                            src={poster}
                             alt="White sculptural hand wearing SILVERSY 92.5 sterling silver rings and bracelet"
                             className="aspect-square h-[52vh] object-cover md:aspect-video md:h-[74vh]"
                         />
@@ -142,17 +152,14 @@ export default function Hero() {
                         <video
                             ref={videoRef}
                             data-testid="hero-video"
+                            src={mobile ? "/assets/hero-mobile-hd.mp4" : "/assets/hero-web-hd.mp4"}
                             className="aspect-square h-[52vh] object-cover md:aspect-video md:h-[74vh]"
                             muted
                             playsInline
                             preload="auto"
-                            poster="/assets/hero-poster.jpg"
+                            poster={poster}
                             aria-label="Hand wearing SILVERSY silver jewellery, animated by scrolling"
-                        >
-                            <source src="/assets/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
-                            <source src="/assets/hero-web.webm" type="video/webm" />
-                            <source src="/assets/hero-web.mp4" type="video/mp4" />
-                        </video>
+                        />
                     )}
                 </div>
             </div>
