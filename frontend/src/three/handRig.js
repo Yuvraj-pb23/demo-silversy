@@ -5,6 +5,7 @@ import { addHandAnatomy } from "./handAnatomy";
 const FINGERS = ["index", "middle", "ring", "pinky"];
 const X = new THREE.Vector3(1, 0, 0);
 const Y = new THREE.Vector3(0, 1, 0);
+const Z = new THREE.Vector3(0, 0, 1);
 const turn = new THREE.Quaternion();
 
 function makeSkinMaterial() {
@@ -108,6 +109,7 @@ export function poseHand(rig, progress) {
     rig.thumb.forEach(({ bone, rest }, i) => {
         bone.quaternion.copy(rest);
         bone.quaternion.multiply(turn.setFromAxisAngle(Y, [0.30, 0, 0][i] + progress * [0.35, 0.05, 0][i]));
+        if (i === 0) bone.quaternion.multiply(turn.setFromAxisAngle(Z, -0.48));
         bone.quaternion.multiply(turn.setFromAxisAngle(X, -[0.14, 0.13, 0.08][i] - progress * [0.25, 0.38, 0.40][i]));
     });
     rig.scene.updateMatrixWorld(true);

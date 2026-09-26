@@ -18,13 +18,14 @@ function Studio() {
             shadow-camera-left={-3} shadow-camera-right={3} shadow-camera-top={3} shadow-camera-bottom={-3} />
         <directionalLight position={[4, 0, 2]} intensity={0.45} color="#f2f5ff" />
         <Environment resolution={512} frames={1}>
-            <color attach="background" args={["#44484e"]} />
+            <color attach="background" args={["#aab0b8"]} />
             <Lightformer intensity={3.2} position={[-3, 4, 5]} scale={[3, 5]} />
             <Lightformer intensity={4} position={[4, 0, 2]} scale={[0.55, 6]} />
             <Lightformer intensity={2.5} position={[0, 6, -3]} scale={[5, 3]} />
             <Lightformer intensity={0.7} position={[-4, -2, -1]} scale={[6, 5]} />
             <Lightformer intensity={1.1} position={[0, -2, 5]} scale={[4, 2]} />
             <Lightformer color="#080a0d" intensity={1} position={[0.6, 0.5, 4]} scale={[0.9, 4]} />
+            <Lightformer color="#141820" intensity={1} position={[-4, 0, 2]} scale={[0.7, 5]} />
             <Lightformer intensity={3} position={[2, 2, -4]} scale={[1.5, 3]} />
             <Lightformer intensity={2} position={[-2, -3, -4]} scale={[2, 1]} />
         </Environment>

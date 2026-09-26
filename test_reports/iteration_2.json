@@ -1,0 +1,39 @@
+{
+  "summary": "Frontend-only re-test of SILVERSY 3D hero after the poster-occlusion fix and BVH-accelerated nail fitting. All priority acceptance points pass on desktop (1440x900) and mobile (390x844). Hero reaches data-render-mode='3d' quickly, the 2D poster is fully unmounted, all five nail meshes are attached to distal bones, the tennis bracelet is present, the emerald ring sits on INDEX and the solitaire on RING, curl-progress smoothly advances on scroll, and the reduced-motion still fallback correctly shows the poster with no canvas. No JS/console errors; only benign THREE.Clock deprecation and GPU ReadPixels perf warnings. A refreshed transparent-canvas PNG was exported from the live scene and saved as /app/frontend/public/assets/hand/hero-hand-poster.png replacing the stale poster.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_features": {
+    "hero_render_mode_desktop": "data-render-mode transitions 'loading' -> '3d' at ~1.0s (1440x900). Poster fully unmounted from DOM by ~1.5s (poster_count=0). Canvas present (canvas_count=1).",
+    "hero_render_mode_mobile": "Fresh mobile navigation (390x844): 'loading' -> '3d' at ~1.5s. Poster unmounted by ~2.0s (poster_count=0).",
+    "reduced_motion_fallback": "prefers-reduced-motion:reduce -> data-render-mode='still', poster remains rendered (poster=1), canvas is not mounted (canvas=0). Correct behaviour.",
+    "rig_inspection": "canvas.__silversyRig exposed in dev preview. rig.index / rig.ring / rig.wrist all present. Named meshes found under rig.scene: nail-index-finger, nail-middle-finger, nail-ring-finger, nail-pinky-finger, nail-thumb-finger (each with a paired 'nail-cuticle' Mesh), plus wrist-tennis-bracelet Group containing bracelet-silver-settings, bracelet-prongs, bracelet-diamonds meshes.",
+    "scroll_curl": "data-curl-progress advances smoothly with scroll: y=0->0.000, y=800->0.135, y=1600->0.400, y=2400->0.704. Damping visible and no jitter.",
+    "visual_scene": "Screenshot confirms WHITE polished hand with visible knuckle contour, five natural nails, a silver emerald-cut diamond ring on INDEX finger, a smaller solitaire on RING finger, and a silver tennis bracelet on the wrist. Layout: SILVERSY masthead above, THE NEW SILVER + EXPLORE COLLECTION CTA below.",
+    "poster_export": "Exported live open-hand canvas via canvas.toDataURL('image/png') (~113 KB decoded PNG). Written to /app/frontend/public/assets/hand/hero-hand-poster.png at scroll top so it reflects the current scene rather than the stale poster.",
+    "console": "0 JS errors, 0 pageerror events. Warnings: THREE.Clock deprecation (drei internal), GL_CLOSE_PATH_NV ReadPixels perf stall (self-suppressing), Emergent scroll-container hint. All benign."
+  },
+  "test_report_links": [
+    "/app/test_reports/hero_iter2_desktop.png",
+    "/app/test_reports/hero_iter2_mobile.png",
+    "/app/frontend/public/assets/hand/hero-hand-poster.png"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "HeroHandVisual.jsx: poster crossfade + hard unmount at 480ms after ready is working correctly on both desktop and mobile; no visible occlusion.",
+    "HeroHand.jsx: onReady is deterministically fired from the first useFrame after the environment resolves, which fixed the StrictMode-cancelled rAF race described in prior iteration.",
+    "handAnatomy.js: static bind-pose + acceleratedRaycast/MeshBVH nail fitting is fast enough that the hero converges to render-mode='3d' in <=1.5s on both viewports; no main-thread hang or tool timeout reproduced.",
+    "Nit: consider migrating THREE.Clock -> THREE.Timer to silence the deprecation warning, and evaluate whether preserveDrawingBuffer:true is still needed after the poster export step (it costs a ReadPixels stall every frame)."
+  ],
+  "updated_files": ["/app/frontend/public/assets/hand/hero-hand-poster.png"],
+  "success_rate": {"backend": "N/A (frontend-only scope)", "frontend": "100% (all priority acceptance points pass on desktop and mobile; no errors)"},
+  "test_credentials": "None required (public preview).",
+  "seed_data_creation": "None.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Hero 3D is stable. If retesting, use bounded polling of [data-testid='hero-3d-hand'] data-render-mode (should hit '3d' within 3s desktop and 4s mobile) and assert page.locator('[data-testid=\"hero-hand-poster\"]').count()==0 within ~2s after that. canvas.__silversyRig is only exposed in the dev preview build (NODE_ENV==='development') — do not rely on it in production builds. Reduced-motion path must keep poster and not mount a canvas.",
+  "rca of the issue": "No new issues. Previous iteration's poster-occlusion bug is fully resolved by (a) HeroHandVisual.jsx flipping is3dReady inside onReady and (b) hard-unmounting the poster 480ms after ready. Previous iteration's tool timeout was caused by unaccelerated per-frame skinned-mesh raycasts in the nail-fitting code; now replaced with a static bind-pose MeshBVH acceleratedRaycast, so the scene converges quickly and no test hang was reproduced."
+}
