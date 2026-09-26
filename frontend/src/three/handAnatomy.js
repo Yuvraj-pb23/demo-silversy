@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { MeshBVH, acceleratedRaycast } from "three-mesh-bvh";
 
 const FINGERS = ["index", "middle", "ring", "pinky"];
 const NAIL = new THREE.MeshPhysicalMaterial({
@@ -60,6 +61,7 @@ function sculptKnuckles(mesh, frames) {
 // A short, rounded-square natural nail. Surface samples fit each unique fingertip.
 function fitNail(mesh, bone, width, length, start) {
     const ray = new THREE.Raycaster();
+    ray.firstHitOnly = true;
     const direction = new THREE.Vector3(0, -1, 0).transformDirection(bone.matrixWorld);
     const surface = (u, v, lift = 0) => {
         const corner = Math.pow(Math.abs(v * 2 - 1), 8);
@@ -107,7 +109,12 @@ export function addHandAnatomy(scene) {
     const frames = jointFrames(scene);
     meshes.forEach((mesh) => sculptKnuckles(mesh, frames));
     scene.updateMatrixWorld(true);
-    const mesh = meshes[0];
+    // Bind-pose surface sampling needs no skinning. A one-time BVH avoids millions
+    // of CPU skin transforms while fitting the five nails on mobile/cold loads.
+    const mesh = new THREE.Mesh(meshes[0].geometry, meshes[0].material);
+    mesh.matrixWorld.copy(meshes[0].matrixWorld);
+    mesh.geometry.boundsTree = new MeshBVH(mesh.geometry);
+    mesh.raycast = acceleratedRaycast;
     [
         ["index-finger", 0.009, 0.0135, 0.006],
         ["middle-finger", 0.0095, 0.014, 0.006],
