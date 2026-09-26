@@ -1,0 +1,55 @@
+{
+  "summary": "Frontend-only testing of SILVERSY 3D hero + full page integrity on desktop (1366) and mobile (390). Scroll-driven curl animation, navigation, product modal, and layout responsiveness verified. One notable bug found: the 2D fallback poster is not hidden after the 3D scene becomes ready, so users likely still see the poster PNG on top of the WebGL canvas.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "HeroHandVisual poster/3D layering",
+        "issue": "After data-render-mode transitions to '3d' (happens ~1.5s) and a Three.js <canvas> is mounted, the poster image [data-testid='hero-hand-poster'] remains at opacity:1, visibility:visible, display:block (full 1192x666 box) alongside the canvas. Since the poster sits above (or at same stacking) the WebGL canvas, the user sees the 2D poster PNG rather than the real-time 3D hand with correctly placed rings on the INDEX and RING fingers. Curl progress attribute updates correctly (i.e., 3D is running underneath), but it's occluded by the poster. Acceptance criteria for a WHITE 3D MANNEQUIN HAND with the emerald-cut ring on index / solitaire on ring / tennis bracelet on wrist cannot be visually verified because the poster masks it.",
+        "selector": "[data-testid='hero-hand-poster']",
+        "priority": "CRITICAL"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Hero poster fallback", "issues": ["Poster art itself appears to show the large ring closer to the middle finger / knuckle gap rather than clearly on the INDEX finger — while the 3D scene is authoritative for finger placement, the poster (currently what users see) does not represent the intended jewellery layout."]}
+    ]
+  },
+  "verified_features": {
+    "hero_3d_host_present": "data-testid='hero-3d-hand' present with data-large-ring-finger='index' and data-small-ring-finger='ring'.",
+    "3d_render_mode_reached": "data-render-mode transitions from 'loading' to '3d' in ~1.5s on both desktop and mobile; WebGL supported; 2 canvases mounted.",
+    "scroll_curl_smooth_down": "curl-progress increased monotonically: 0.000 -> 0.081 -> 0.161 -> 0.272 -> 0.394 -> 0.519 -> 0.647 -> 0.775 -> 0.893 as window.scrollY 0..2400.",
+    "scroll_curl_smooth_up": "curl-progress decreased monotonically on reverse scroll: 0.920 -> 0.855 -> 0.750 -> 0.631 -> 0.506 -> 0.379 -> 0.251 -> 0.123. Damping lag is expected.",
+    "masthead_and_nav": "hero-masthead visible at top. After scrolling past the pinned hero, #nav-logo is visible (fixed nav). #site-nav.offsetParent is null which is expected for position:fixed and NOT a bug.",
+    "explore_button": "[data-testid='hero-explore-btn'] click scrolls the page to #collection (top ~0.3px in viewport after click).",
+    "category_link_rings": "[data-testid='hero-category-link-rings'] click scrolls to same #collection position (scrollY=5420).",
+    "product_modal": "Clicking [data-testid='product-card-aria-solitaire'] opens the [data-testid='product-modal'] (role=dialog). Modal shows 'ENQUIRE ON WHATSAPP' and 'VIEW ON INSTAGRAM' CTAs.",
+    "responsive_desktop_1366": "documentElement.scrollWidth == innerWidth == 1366; no horizontal overflow.",
+    "responsive_mobile_390": "documentElement.scrollWidth == innerWidth == 390; no horizontal overflow. Hero still reaches data-render-mode='3d'.",
+    "console": "No JS errors. Only benign warnings: WebGL 'GPU stall due to ReadPixels' (perf), Emergent scroll-container hint, THREE.Clock deprecation, THREE PCFSoftShadowMap fallback."
+  },
+  "test_report_links": [
+    "/app/test_reports/hero_top.png",
+    "/app/test_reports/hero_3d.png",
+    "/app/test_reports/hero_scrolled.png",
+    "/app/test_reports/product_modal.png",
+    "/app/test_reports/mobile_hero.png"
+  ],
+  "action_items": [
+    "In /app/frontend/src/components/HeroHandVisual.jsx, once data-render-mode becomes '3d' (or onReady from HeroHand fires), fade out / unmount the [data-testid='hero-hand-poster'] element (e.g., set opacity:0 + pointer-events:none, or conditionally render). Currently it remains at opacity:1 above the canvas, occluding the real 3D hand.",
+    "Verify z-index/stacking: ensure the R3F canvas sits above the poster during the transition, or crossfade poster -> canvas.",
+    "Optionally lower shadow map type to remove the PCFSoftShadowMap fallback warning; switch to THREE.Timer to drop the Clock deprecation warning (non-blocking)."
+  ],
+  "critical_code_review_comments": [
+    "HeroHandVisual.jsx: poster hide logic tied to render-mode is not effectively applied — the DOM shows opacity:1 after 3d. Recommend gating poster with a state flag flipped inside onReady callback and using CSS transition.",
+    "handRig.js / HeroHand.jsx: 3D system itself appears healthy (data-curl-progress smoothly damps), so the visual issue is purely a layering/visibility bug, not a scene logic bug."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested)", "frontend": "~88% (7/8 acceptance points pass; hero 3D visibility fails due to poster occlusion)"},
+  "test_credentials": "None required (public showcase).",
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Curl-progress attribute is a reliable programmatic proxy for the scroll animation and confirms 3D is running. When retesting the poster fix, assert: after ~3s post-load, either [data-testid='hero-hand-poster'] is gone from DOM OR its computed opacity is 0 (getComputedStyle). Visual finger placement of rings should then be verifiable in a hero screenshot. Test at both 1366x900 and 390x844 viewports.",
+  "rca of the issue": "Poster overlay bug — the poster <img data-testid='hero-hand-poster'> is rendered in the same container as the R3F Canvas inside HeroHandVisual.jsx and its opacity is not being toggled when 3D becomes ready. data-render-mode is set to '3d' but the poster's own inline style / class isn't updated. Fix: introduce a `is3dReady` state in HeroHandVisual, flip it inside the onReady callback from HeroHand, and apply `style={{ opacity: is3dReady ? 0 : 1, transition: 'opacity 400ms ease', pointerEvents: 'none' }}` (or conditionally unmount) to the poster."
+}

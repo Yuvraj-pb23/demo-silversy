@@ -1,264 +1,135 @@
 {
-  "brand_identity": {
-    "name": "SILVERSY®",
-    "tagline": "THE NEW SILVER",
-    "material": "92.5 Sterling Silver Jewellery",
-    "instagram": "@silversy_co",
-    "store_location": "Sirhind, Punjab, India",
-    "aesthetic_tone": "MODERN, EDITORIAL, MINIMAL, LUXURY, FASHION, SILVER, CINEMATIC, SOFT, PREMIUM",
-    "emotional_goal": "Tactile intimacy, modern heirloom elegance, quiet luxury silver sheen against serene warm alabaster and cream environments."
-  },
-  "color_system": {
-    "archetype": "LIGHT EDITORIAL LUXURY",
-    "backgrounds": {
-      "primary": "#F5F1EA",
-      "secondary": "#F1ECE4",
-      "canvas": "#FAF9F6",
-      "surface_card": "#FFFFFF",
-      "surface_warm": "#FAF8F5"
-    },
-    "typography": {
-      "primary": "#151515",
-      "heading": "#202020",
-      "body": "#383838",
-      "muted": "#75726D",
-      "light_accent": "#A39E96"
-    },
-    "accents": {
-      "silver_reflection": "linear-gradient(135deg, #E6E6E6 0%, #FFFFFF 50%, #B8B8B8 100%)",
-      "silver_border": "#E5DFD5",
-      "hover_border": "#C0C0C0",
-      "subtle_champagne": "#E8E2D8"
-    },
-    "rules": [
-      "NO dark or black backgrounds for main sections — maintain light luxury warmth",
-      "Silver jewellery elements must radiate with subtle polished sheen over warm neutral backgrounds",
-      "Avoid heavy gold tones; retain strict focus on 92.5 pure silver finish",
-      "All card containers with borders must include internal padding (p-6 to p-8) to avoid text collision"
-    ]
-  },
-  "typography": {
-    "font_families": {
-      "headings": "'Cormorant Garamond', 'Playfair Display', serif",
-      "body_and_ui": "'Manrope', 'Outfit', 'Plus Jakarta Sans', sans-serif",
-      "accent_mono": "'JetBrains Mono', monospace"
-    },
-    "scale": {
-      "giant_hero_masthead": "text-[14vw] sm:text-[15vw] lg:text-[16vw] font-serif uppercase tracking-tight leading-none",
-      "h1_section_title": "text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight leading-none text-[#202020]",
-      "h2_subtitle": "text-2xl sm:text-3xl lg:text-4xl font-serif italic text-[#383838]",
-      "h3_card_title": "text-lg sm:text-xl font-serif text-[#151515]",
-      "body_text": "text-sm sm:text-base text-[#383838] leading-relaxed font-sans",
-      "micro_label": "text-[10px] sm:text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#75726D]"
-    },
-    "rules": [
-      "Headings MUST use Editorial Serif for identity and impact",
-      "Subtitles & category tags use wide letter-spacing tracking-[0.25em]",
-      "Typography sometimes intentionally overlaps or extends beyond containers in hero and editorial callouts"
-    ]
-  },
-  "hero_3d_r3f_specifications": {
-    "scope": "ONLY Hero 3D media replacement. Retain all site typography, layout, cream palette, and navigation morph timing.",
-    "mesh_anatomy": {
-      "model_type": "Skinned articulated white mannequin hand mesh (.gltf / .glb)",
-      "aesthetic": "Visually plausible human hand anatomy with smooth matte porcelain finish, realistic bone structure, fingers, palm, and wrist (NOT primitive capsules or robotic blocks)",
-      "material": {
-        "roughness": 0.28,
-        "metalness": 0.05,
-        "color": "#F8F6F2",
-        "subsurface_scattering": true,
-        "opacity": 1.0,
-        "transparent": false
-      }
-    },
-    "jewellery_attachments": {
-      "index_finger_ring": {
-        "placement": "Attached directly to Index Finger Proximal/Intermediate Phalanx bone",
-        "gemstone": "Large rectangular emerald-cut brilliant stone centered on top",
-        "prongs": "Four corner silver prongs holding the emerald cut stone",
-        "band": "Thick polished 925 sterling silver band",
-        "materials": {
-          "gemstone": "meshPhysicalMaterial (transmission: 0.98, thickness: 0.8, roughness: 0.01, ior: 2.417, dispersion: 0.04, color: #ffffff)",
-          "metal": "meshStandardMaterial (metalness: 1.0, roughness: 0.05, color: #f2f2f2, envMapIntensity: 2.5)"
-        }
-      },
-      "ring_finger_ring": {
-        "placement": "Attached directly to Ring Finger Proximal Phalanx bone",
-        "gemstone": "Small round solitaire brilliant diamond stone",
-        "band": "Slim, sleek 925 sterling silver band",
-        "materials": {
-          "gemstone": "meshPhysicalMaterial (transmission: 0.96, thickness: 0.4, roughness: 0.01, ior: 2.42, color: #ffffff)",
-          "metal": "meshStandardMaterial (metalness: 1.0, roughness: 0.06, color: #f4f4f4, envMapIntensity: 2.5)"
-        }
-      },
-      "wrist_bracelet": {
-        "placement": "Encircled around Carpal/Wrist joint bone",
-        "type": "Single-row tennis bracelet with continuous stone-set prongs",
-        "materials": {
-          "stones": "meshPhysicalMaterial (transmission: 0.95, roughness: 0.01, clearcoat: 1.0, envMapIntensity: 3.0)",
-          "setting": "meshStandardMaterial (metalness: 1.0, roughness: 0.04, color: #f8f8f8)"
-        }
-      }
-    },
-    "lighting_and_hd_reflections": {
-      "environment": "<Environment> studio setup using Lightformers for dynamic silver and gemstone reflections",
-      "lights": [
-        "Directional main light at [4, 6, 5] with intensity 1.2",
-        "Fill light at [-4, 2, -2] with warm white hue intensity 0.5",
-        "Top soft key Lightformer with scale [10, 10, 1] intensity 3.0",
-        "Rim light Lightformer for crisp silver edge highlights"
-      ],
-      "tone_mapping": "ACESFilmicToneMapping or neutral tone mapping with exposure 1.1 for HD crystal clarity without clipping"
-    },
-    "scroll_articulation": {
-      "trigger": "GSAP ScrollTrigger scrubbing progress [0.0 -> 1.0]",
-      "bone_rotations": {
-        "open_hand": "Progress 0.0 — fingers extended outwards gracefully showing top faces of rings and tennis bracelet",
-        "closed_hand": "Progress 1.0 — smooth fist curl/closing transition as user scrolls down",
-        "interpolation": "slerp bone rotations smoothly inside useFrame using scroll progress ref target"
-      }
-    },
-    "occlusion_and_layering": {
-      "rule": "REMOVE mix-blend-multiply on hero hand container. Render 3D hand with opaque background matching canvas background (#F5F1EA / alpha: true with canvas overlay) so the giant masthead text ('SILVERSY') sits behind the 3D hand and is naturally occluded by the physical hand model."
-    },
-    "fallbacks": {
-      "mobile_and_reduced_motion": "For prefers-reduced-motion or WebGL low-spec devices, render a pre-rendered HD frame image while retaining interactive layout and CTA."
-    }
-  },
-  "sections_breakdown": [
-    {
-      "id": "01_about",
-      "title": "MORE THAN JEWELLERY.",
-      "layout": "Editorial 2-column split with large lifestyle photography and smooth scroll parallax",
-      "content": "At Silversy, jewellery is more than an accessory. It is a reflection of identity, expression and the moments we choose to remember.",
-      "cta": "OUR STORY →"
-    },
-    {
-      "id": "02_925_silver",
-      "title": "CRAFTED IN 925",
-      "layout": "Metallic highlight feature with huge reflective 925 typography and 3 core pillars: PURITY, CRAFT, TIMELESS DESIGN",
-      "content": "92.5 STERLING SILVER — High polish purity, hand-finished perfection."
-    },
-    {
-      "id": "03_category_discovery",
-      "title": "EXPLORE THE COLLECTION",
-      "categories": [
-        "RINGS",
-        "EARRINGS",
-        "CHAINS",
-        "BRACELETS",
-        "KADA",
-        "PAYAL",
-        "BROOCH"
-      ],
-      "layout": "Asymmetric bento grid on desktop with hover image zoom, subtle silver reflection & smooth arrow transition; horizontal scroll on mobile."
-    },
-    {
-      "id": "04_signature_pieces",
-      "title": "SIGNATURE PIECES",
-      "layout": "6–8 curated product cards with category, title, price badge ('PRICE ON REQUEST' or item price), and 'VIEW PIECE →' trigger opening modal.",
-      "card_style": "Sharp rectangular borders (border-[#E5DFD5]), subtle image zoom, light cream surface, no heavy shadows"
-    },
-    {
-      "id": "05_look_closer",
-      "title": "LOOK CLOSER. DETAILS MATTER.",
-      "layout": "Cinematic single large silver piece feature with interactive 360-degree rotation view, zoom toggle, and interactive detail hotspots (925 SILVER, SIGNATURE FORM, CRAFTED DETAIL)."
-    },
-    {
-      "id": "06_craft_detail",
-      "title": "THE ART OF DETAIL",
-      "layout": "Editorial split with macro silver detail shot and key philosophy quote",
-      "content": "Every piece should balance presence and simplicity — jewellery designed to complement the person wearing it.",
-      "cta": "DISCOVER THE COLLECTION →"
-    },
-    {
-      "id": "07_most_loved",
-      "title": "MOST LOVED CREATIONS",
-      "layout": "4-column editorial grid (2-column on mobile) featuring popular items with quick enquiry trigger."
-    },
-    {
-      "id": "08_instagram_world",
-      "title": "THE SILVERSY WORLD",
-      "handle": "@silversy_co",
-      "layout": "Editorial masonry lifestyle gallery with subtle hover overlay and direct Instagram link.",
-      "cta": "FOLLOW @SILVERSY_CO →"
-    },
-    {
-      "id": "09_visit_silversy",
-      "title": "VISIT SILVERSY",
-      "location": "Sirhind, Punjab",
-      "subtitle": "Discover the collection in person.",
-      "buttons": [
-        "GET DIRECTIONS →",
-        "WHATSAPP US →"
-      ]
-    },
-    {
-      "id": "10_final_cta",
-      "title": "FIND YOUR SIGNATURE PIECE.",
-      "subtitle": "Discover the world of 92.5 sterling silver jewellery.",
-      "buttons": [
-        "EXPLORE COLLECTION →",
-        "FOLLOW ON INSTAGRAM →"
-      ]
-    },
-    {
-      "id": "footer",
-      "layout": "Minimal luxury footer with large oversized SILVERSY® logo watermark, category columns, store info, and social links.",
-      "copyright": "© 2026 SILVERSY® All rights reserved."
-    }
+  "project_title": "Silversy 3D Hero Hand & Fine Jewellery Photorealism Blueprint",
+  "app_type": "3d_experience",
+  "context": "Enhancement of existing Three.js / React Three Fiber interactive 3D hero hand with fine silver and diamond jewellery in /app/frontend/src/three/",
+  "target_aesthetic": "Premium Light Editorial SILVERSY Styling with Photorealistic 3D Silver, High-Refractive Faceted Diamonds, Natural Hand Joint/Knuckle Micro-anatomy, and Subtle Glossy Fingernails",
+
+  "core_issues_identified": [
+    "Washed-out skin shader lacking anatomical finger knuckles, creases, and natural skin tone subsurface depth",
+    "Missing fingernails on fingers and thumb",
+    "Milky / transparent diamond material lacking high-refractive internal sparkle, proper depth, and sharp specular facets",
+    "Flat, pale white silver material lacking deep metallic reflections, contrast, and mirror polish",
+    "Studio environment lighting lacking high-contrast specular highlights required for realistic metal chrome and gem brilliance"
   ],
-  "image_urls": {
-    "rings": [
-      "https://images.unsplash.com/photo-1621311628038-01cd988520c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1590703160323-ac5d3fc14089?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1620135104013-1abdff4b1ca7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHw0fHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
-    ],
-    "earrings": [
-      "https://images.unsplash.com/photo-1611653842967-39eb011b2ca3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85"
-    ],
-    "chains_and_necklaces": [
-      "https://images.unsplash.com/photo-1616294099799-dab525ec05c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1599459183540-09f1fd687a2e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHw0fHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
-    ],
-    "bracelets_and_kada": [
-      "https://images.unsplash.com/photo-1605884878538-6468614df578?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1621311628038-01cd988520c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
-    ],
-    "macro_detail": [
-      "https://images.unsplash.com/photo-1590703160323-ac5d3fc14089?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxzdGVybGluZyUyMHNpbHZlciUyMHJpbmclMjBqZXdlbHJ5JTIwYWVzdGhldGljJTIwY3JlYW0lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
-    ],
-    "editorial_lifestyle": [
-      "https://images.unsplash.com/photo-1611653842967-39eb011b2ca3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBlYXJyaW5ncyUyMGx1eHVyeSUyMGpld2VscnklMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzkwMzYwNTUyfDA&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1616294099799-dab525ec05c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHxzaWx2ZXIlMjBuZWNrbGFjZSUyMHNpbHZlciUyMGNoYWluJTIwbHV4dXJ5JTIwamV3ZWxyeSUyMG1vZGVsfGVufDB8fHx8MTc5MDM2MDU1Mnww&ixlib=rb-4.1.0&q=85"
-    ]
-  },
-  "motion_and_microinteractions": {
-    "lenis_smooth_scroll": "Enable smooth momentum scrolling globally for cinematic feel",
-    "framer_motion_variants": {
-      "stagger_children": 0.08,
-      "fade_up_distance": 24,
-      "duration": 0.8,
-      "ease": [
-        0.25,
-        1,
-        0.5,
-        1
-      ]
+
+  "three_js_implementation_blueprint": {
+    "handRig_js": {
+      "path": "/app/frontend/src/three/handRig.js",
+      "skin_material_upgrades": {
+        "base_material_type": "MeshPhysicalMaterial",
+        "parameters": {
+          "color": "#f0e6dd",
+          "roughness": 0.48,
+          "metalness": 0.0,
+          "clearcoat": 0.25,
+          "clearcoatRoughness": 0.3,
+          "sheen": 0.45,
+          "sheenColor": "#f7ece1",
+          "sheenRoughness": 0.5,
+          "ior": 1.4,
+          "transmission": 0.02,
+          "thickness": 0.15
+        },
+        "glsl_procedural_enhancements": {
+          "knuckle_anatomical_lines": "In GLSL shader replacement, generate localized transverse finger joint flexure lines (knuckle creases) along each finger phalanx (Z axis of finger object coordinates: proximal at ~0.04 to 0.06, intermediate at ~0.09 to 0.11, distal flexure at ~0.14). Use smoothstep band masks combined with high-frequency micro-crease noise to create realistic knuckle folds and skin tension lines.",
+          "fingernail_rendering": "Detect finger tip coordinates (z > 0.15 on distal phalanx / obj pos y/z limits). Create glossy fingernail beds with defined nail lunula and cuticle curves using GLSL distance fields: apply higher clearcoat (0.95), lower roughness (0.12), and slight translucent pinkish tone (#f3d7d4) for nail bed vs surrounding skin color (#f0e6dd).",
+          "skin_micro_texture": "Adjust normal perturbation magnitude and multi-frequency FBM (fine pores + skin direction lines) so knuckles show visible micro-wrinkles while palm/dorsal skin remains soft and natural."
+        }
+      }
     },
-    "metallic_reflections": "Subtle Three.js or CSS linear shimmer reflecting light over '925' and signature headings",
-    "hover_effects": "Image zoom transform scale-105, border color transition to #C0C0C0, text arrow translate-x-1"
+
+    "HandJewellery_jsx": {
+      "path": "/app/frontend/src/three/HandJewellery.jsx",
+      "silver_material_upgrades": {
+        "base_material_type": "MeshStandardMaterial / MeshPhysicalMaterial",
+        "parameters": {
+          "color": "#e8ecf2",
+          "metalness": 1.0,
+          "roughness": 0.06,
+          "envMapIntensity": 3.2,
+          "clearcoat": 0.5,
+          "clearcoatRoughness": 0.05
+        },
+        "visual_impact": "Produces crisp, deep dark-and-light environment reflections characteristic of mirror-polished sterling silver 925."
+      },
+      "diamond_material_upgrades": {
+        "base_material_type": "MeshPhysicalMaterial",
+        "parameters": {
+          "color": "#ffffff",
+          "metalness": 0.0,
+          "roughness": 0.0,
+          "transmission": 0.92,
+          "thickness": 0.85,
+          "ior": 2.417,
+          "dispersion": 0.08,
+          "envMapIntensity": 5.5,
+          "clearcoat": 1.0,
+          "clearcoatRoughness": 0.0,
+          "specularIntensity": 2.0,
+          "specularColor": "#ffffff",
+          "iridescence": 0.65,
+          "iridescenceIOR": 2.1,
+          "iridescenceThicknessRange": [150, 480],
+          "attenuationColor": "#e0f2fe",
+          "attenuationDistance": 0.8
+        },
+        "gem_geometry_enhancements": {
+          "emerald_cut": "Refine EMERALD geometry facets with sharp bevels, step-cut pavilion facets, and prominent table geometry for realistic light refraction on the index finger ring.",
+          "brilliant_cut": "Ensure BRILLIANT gem geometry has proper crown, girdle, pavilion angles and 32 faceted triangles so light refracts with fire.",
+          "facet_glints": "Maintain and enhance FacetGlint sprites on ring gemstones and tennis bracelet stones for dynamic scroll sparkles."
+        }
+      },
+      "jewellery_proportions": "Preserve exact physical sizes: Index ring emerald solitaire (~15mm x 21mm unit scale), Ring finger solitaire (~9mm unit scale), Wrist tennis bracelet (44 linked bezel settings with individual diamonds)."
+    },
+
+    "HeroHand_jsx": {
+      "path": "/app/frontend/src/three/HeroHand.jsx",
+      "studio_lighting_upgrades": {
+        "ambientLight": { "intensity": 0.45, "color": "#ffffff" },
+        "directionalLight_main": { "position": [-3, 6, 5], "intensity": 3.4, "castShadow": true },
+        "directionalLight_fill": { "position": [4, 2, 4], "intensity": 1.2, "color": "#e0f2fe" },
+        "directionalLight_rim": { "position": [0, -4, 6], "intensity": 1.8, "color": "#ffffff" },
+        "environment_lightformers": [
+          { "type": "rect", "intensity": 6.5, "position": [-3, 4, 4], "scale": [2.5, 7, 1], "color": "#ffffff" },
+          { "type": "rect", "intensity": 4.5, "position": [4, 1, 3], "scale": [1.0, 7, 1], "color": "#dbeafe" },
+          { "type": "rect", "intensity": 5.0, "position": [0, 6, 1], "scale": [6, 4, 1], "color": "#ffffff" },
+          { "type": "circle", "intensity": 3.0, "position": [-1, -2, 5], "scale": [2, 2, 1], "color": "#ffffff" }
+        ],
+        "renderer_settings": {
+          "toneMapping": "ACESFilmicToneMapping",
+          "toneMappingExposure": 1.15
+        }
+      }
+    }
   },
-  "testing_and_accessibility": {
-    "data_testid_policy": "All key interactive buttons, modals, category links, product cards, WhatsApp/Instagram CTAs MUST include kebab-case data-testid attributes (e.g. data-testid='hero-explore-btn', data-testid='product-card-1', data-testid='hero-3d-canvas', data-testid='whatsapp-enquire-btn').",
-    "reduced_motion": "Wrap non-essential scroll animations with prefers-reduced-motion check or simple CSS fallback",
-    "contrast_check": "All text elements exceed 4.5:1 APCA contrast ratio against warm background #F5F1EA / #FAF9F6"
+
+  "colors": {
+    "background_primary": "#fafafa",
+    "background_secondary": "#f4f4f5",
+    "text_primary": "#0f172a",
+    "text_muted": "#64748b",
+    "accent_silver": "#94a3b8",
+    "accent_brand": "#0284c7",
+    "border_subtle": "#e2e8f0"
   },
-  "instructions_to_main_agent": {
-    "file_type": "React JS (.js and .jsx files)",
-    "toasts": "Use Sonner toast notifications (located in src/components/ui/sonner.jsx or similar) for enquiry confirmation",
-    "modal_feature": "Product click MUST trigger an elegant detail modal showcasing product imagery, 92.5 hallmark details, 'ENQUIRE ON WHATSAPP' button (pre-filled text), and 'VIEW ON INSTAGRAM' button",
-    "header_morph": "Ensure sticky navigation stays clean with high z-index and semi-opaque background backdrop-blur-md bg-[#FAF9F6]/85"
-  }
+
+  "typography": {
+    "heading_font": "Playfair Display, serif",
+    "body_font": "Inter, sans-serif",
+    "mono_font": "JetBrains Mono, monospace"
+  },
+
+  "general_ui_guidelines": {
+    "testing_attributes": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case format (e.g. data-testid='hero-3d-hand-container', data-testid='product-card-ring').",
+    "responsive_rules": "Ensure Canvas rendering maintains smooth 60fps performance across desktop and mobile while staying touch-interactive and scroll-linked.",
+    "accessibility": "Provide aria-hidden='true' on purely decorative 3D canvas and maintain fallback image loading state for complete accessibility compliance."
+  },
+
+  "instructions_to_main_agent": [
+    "1. Open /app/frontend/src/three/handRig.js and update makeSkinMaterial GLSL shader code to add transverse knuckle flexure creases and glossy fingernail masks.",
+    "2. Open /app/frontend/src/three/HandJewellery.jsx and enhance SILVER (high metallic contrast, roughness 0.06) and DIAMOND (high transmission 0.92, dispersion 0.08, specular 2.0) materials.",
+    "3. Open /app/frontend/src/three/HeroHand.jsx and upgrade Environment lightformers and directional lights to create sharp metallic silver reflections and sparkling gem facets.",
+    "4. Test that the scroll-scrubbed hand curl animation remains perfectly synchronized and all jewellery remains attached seamlessly.",
+    "5. Ensure no code breaking changes are introduced to the rest of the application."
+  ]
 }
