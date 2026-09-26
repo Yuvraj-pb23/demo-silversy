@@ -57,17 +57,72 @@
       "Typography sometimes intentionally overlaps or extends beyond containers in hero and editorial callouts"
     ]
   },
-  "hero_experience_architecture": {
-    "pinned_scrub_experience": {
-      "description": "Cinematic scroll-controlled pinned container with video frame scrubbing or video time scrub",
-      "video_subject": "White sculptural mannequin hand wearing silver rings on pure white background (1920x1080)",
-      "masthead_behavior": "Giant SILVERSY serif wordmark occupying ~80% viewport width, shrinking and moving to sticky header on scroll",
-      "elements": [
-        "Left supporting text: THE NEW SILVER | 92.5 STERLING SILVER JEWELLERY",
-        "Center CTA: EXPLORE COLLECTION →",
-        "Right column: MORE THAN JEWELLERY A STORY + Category quick nav (RINGS, EARRINGS, CHAINS, BRACELETS, KADA, PAYAL, BROOCH)",
-        "Bottom timestamp badge: [ SINCE 2017 ]"
-      ]
+  "hero_3d_r3f_specifications": {
+    "scope": "ONLY Hero 3D media replacement. Retain all site typography, layout, cream palette, and navigation morph timing.",
+    "mesh_anatomy": {
+      "model_type": "Skinned articulated white mannequin hand mesh (.gltf / .glb)",
+      "aesthetic": "Visually plausible human hand anatomy with smooth matte porcelain finish, realistic bone structure, fingers, palm, and wrist (NOT primitive capsules or robotic blocks)",
+      "material": {
+        "roughness": 0.28,
+        "metalness": 0.05,
+        "color": "#F8F6F2",
+        "subsurface_scattering": true,
+        "opacity": 1.0,
+        "transparent": false
+      }
+    },
+    "jewellery_attachments": {
+      "index_finger_ring": {
+        "placement": "Attached directly to Index Finger Proximal/Intermediate Phalanx bone",
+        "gemstone": "Large rectangular emerald-cut brilliant stone centered on top",
+        "prongs": "Four corner silver prongs holding the emerald cut stone",
+        "band": "Thick polished 925 sterling silver band",
+        "materials": {
+          "gemstone": "meshPhysicalMaterial (transmission: 0.98, thickness: 0.8, roughness: 0.01, ior: 2.417, dispersion: 0.04, color: #ffffff)",
+          "metal": "meshStandardMaterial (metalness: 1.0, roughness: 0.05, color: #f2f2f2, envMapIntensity: 2.5)"
+        }
+      },
+      "ring_finger_ring": {
+        "placement": "Attached directly to Ring Finger Proximal Phalanx bone",
+        "gemstone": "Small round solitaire brilliant diamond stone",
+        "band": "Slim, sleek 925 sterling silver band",
+        "materials": {
+          "gemstone": "meshPhysicalMaterial (transmission: 0.96, thickness: 0.4, roughness: 0.01, ior: 2.42, color: #ffffff)",
+          "metal": "meshStandardMaterial (metalness: 1.0, roughness: 0.06, color: #f4f4f4, envMapIntensity: 2.5)"
+        }
+      },
+      "wrist_bracelet": {
+        "placement": "Encircled around Carpal/Wrist joint bone",
+        "type": "Single-row tennis bracelet with continuous stone-set prongs",
+        "materials": {
+          "stones": "meshPhysicalMaterial (transmission: 0.95, roughness: 0.01, clearcoat: 1.0, envMapIntensity: 3.0)",
+          "setting": "meshStandardMaterial (metalness: 1.0, roughness: 0.04, color: #f8f8f8)"
+        }
+      }
+    },
+    "lighting_and_hd_reflections": {
+      "environment": "<Environment> studio setup using Lightformers for dynamic silver and gemstone reflections",
+      "lights": [
+        "Directional main light at [4, 6, 5] with intensity 1.2",
+        "Fill light at [-4, 2, -2] with warm white hue intensity 0.5",
+        "Top soft key Lightformer with scale [10, 10, 1] intensity 3.0",
+        "Rim light Lightformer for crisp silver edge highlights"
+      ],
+      "tone_mapping": "ACESFilmicToneMapping or neutral tone mapping with exposure 1.1 for HD crystal clarity without clipping"
+    },
+    "scroll_articulation": {
+      "trigger": "GSAP ScrollTrigger scrubbing progress [0.0 -> 1.0]",
+      "bone_rotations": {
+        "open_hand": "Progress 0.0 — fingers extended outwards gracefully showing top faces of rings and tennis bracelet",
+        "closed_hand": "Progress 1.0 — smooth fist curl/closing transition as user scrolls down",
+        "interpolation": "slerp bone rotations smoothly inside useFrame using scroll progress ref target"
+      }
+    },
+    "occlusion_and_layering": {
+      "rule": "REMOVE mix-blend-multiply on hero hand container. Render 3D hand with opaque background matching canvas background (#F5F1EA / alpha: true with canvas overlay) so the giant masthead text ('SILVERSY') sits behind the 3D hand and is naturally occluded by the physical hand model."
+    },
+    "fallbacks": {
+      "mobile_and_reduced_motion": "For prefers-reduced-motion or WebGL low-spec devices, render a pre-rendered HD frame image while retaining interactive layout and CTA."
     }
   },
   "sections_breakdown": [
@@ -87,7 +142,15 @@
     {
       "id": "03_category_discovery",
       "title": "EXPLORE THE COLLECTION",
-      "categories": ["RINGS", "EARRINGS", "CHAINS", "BRACELETS", "KADA", "PAYAL", "BROOCH"],
+      "categories": [
+        "RINGS",
+        "EARRINGS",
+        "CHAINS",
+        "BRACELETS",
+        "KADA",
+        "PAYAL",
+        "BROOCH"
+      ],
       "layout": "Asymmetric bento grid on desktop with hover image zoom, subtle silver reflection & smooth arrow transition; horizontal scroll on mobile."
     },
     {
@@ -125,13 +188,19 @@
       "title": "VISIT SILVERSY",
       "location": "Sirhind, Punjab",
       "subtitle": "Discover the collection in person.",
-      "buttons": ["GET DIRECTIONS →", "WHATSAPP US →"]
+      "buttons": [
+        "GET DIRECTIONS →",
+        "WHATSAPP US →"
+      ]
     },
     {
       "id": "10_final_cta",
       "title": "FIND YOUR SIGNATURE PIECE.",
       "subtitle": "Discover the world of 92.5 sterling silver jewellery.",
-      "buttons": ["EXPLORE COLLECTION →", "FOLLOW ON INSTAGRAM →"]
+      "buttons": [
+        "EXPLORE COLLECTION →",
+        "FOLLOW ON INSTAGRAM →"
+      ]
     },
     {
       "id": "footer",
@@ -171,18 +240,23 @@
       "stagger_children": 0.08,
       "fade_up_distance": 24,
       "duration": 0.8,
-      "ease": [0.25, 1, 0.5, 1]
+      "ease": [
+        0.25,
+        1,
+        0.5,
+        1
+      ]
     },
     "metallic_reflections": "Subtle Three.js or CSS linear shimmer reflecting light over '925' and signature headings",
     "hover_effects": "Image zoom transform scale-105, border color transition to #C0C0C0, text arrow translate-x-1"
   },
   "testing_and_accessibility": {
-    "data_testid_policy": "All key interactive buttons, modals, category links, product cards, WhatsApp/Instagram CTAs MUST include kebab-case data-testid attributes (e.g. data-testid='hero-explore-btn', data-testid='product-card-1', data-testid='whatsapp-enquire-btn').",
+    "data_testid_policy": "All key interactive buttons, modals, category links, product cards, WhatsApp/Instagram CTAs MUST include kebab-case data-testid attributes (e.g. data-testid='hero-explore-btn', data-testid='product-card-1', data-testid='hero-3d-canvas', data-testid='whatsapp-enquire-btn').",
     "reduced_motion": "Wrap non-essential scroll animations with prefers-reduced-motion check or simple CSS fallback",
     "contrast_check": "All text elements exceed 4.5:1 APCA contrast ratio against warm background #F5F1EA / #FAF9F6"
   },
   "instructions_to_main_agent": {
-    "file_type": "React JS (.js files, not .tsx)",
+    "file_type": "React JS (.js and .jsx files)",
     "toasts": "Use Sonner toast notifications (located in src/components/ui/sonner.jsx or similar) for enquiry confirmation",
     "modal_feature": "Product click MUST trigger an elegant detail modal showcasing product imagery, 92.5 hallmark details, 'ENQUIRE ON WHATSAPP' button (pre-filled text), and 'VIEW ON INSTAGRAM' button",
     "header_morph": "Ensure sticky navigation stays clean with high z-index and semi-opaque background backdrop-blur-md bg-[#FAF9F6]/85"

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { HeroHandVisual } from "@/components/HeroHandVisual";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -12,53 +13,19 @@ const HERO_CATS = ["RINGS", "EARRINGS", "CHAINS", "BRACELETS", "KADA", "PAYAL"];
 export default function Hero() {
     const reduced = usePrefersReducedMotion();
     const rootRef = useRef(null);
-    const videoRef = useRef(null);
+    const progress = useRef(0);
     const wrapRef = useRef(null);
     const mastRef = useRef(null);
     const leftRef = useRef(null);
     const rightRef = useRef(null);
     const sinceRef = useRef(null);
     const hintRef = useRef(null);
-    const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 767px)").matches);
-    const poster = mobile ? "/assets/hero-poster-mobile-hd.jpg" : "/assets/hero-poster-hd.jpg";
-
-    useEffect(() => {
-        const query = window.matchMedia("(max-width: 767px)");
-        const onChange = (event) => setMobile(event.matches);
-        query.addEventListener("change", onChange);
-        return () => query.removeEventListener("change", onChange);
-    }, []);
 
     useEffect(() => {
         if (reduced) return undefined;
-        const video = videoRef.current;
-        let duration = 0;
-        let target = 0;
-        let current = 0;
-
-        const onMeta = () => {
-            duration = video.duration || 0;
-        };
-        video.addEventListener("loadedmetadata", onMeta);
-        if (video.readyState >= 1) onMeta();
-
-        const tick = () => {
-            if (!duration) return;
-            current += (target - current) * 0.16;
-            if (Math.abs(target - current) < 0.015) current = target;
-            if (Math.abs(video.currentTime - current) > 0.03) {
-                try {
-                    video.currentTime = Math.min(Math.max(current, 0), Math.max(duration - 0.06, 0));
-                } catch (e) {
-                    /* seek not ready */
-                }
-            }
-        };
-        gsap.ticker.add(tick);
 
         const ctx = gsap.context(() => {
             const mast = mastRef.current;
-            const isMobile = window.innerWidth < 768;
             const dyFn = () => {
                 const centerY = mast.offsetTop + mast.offsetHeight / 2;
                 const targetY = window.innerWidth < 768 ? 33 : 40;
@@ -74,13 +41,13 @@ export default function Hero() {
                 scrollTrigger: {
                     trigger: rootRef.current,
                     start: "top top",
-                    end: () => `+=${Math.round(window.innerHeight * (isMobile ? 1.9 : 2.6))}`,
+                    end: () => `+=${Math.round(window.innerHeight * (window.innerWidth < 768 ? 1.9 : 2.6))}`,
                     scrub: 0.5,
                     pin: true,
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
-                        target = self.progress * duration;
+                        progress.current = self.progress;
                     },
                 },
             });
@@ -105,8 +72,7 @@ export default function Hero() {
 
         return () => {
             window.removeEventListener("load", onLoad);
-            gsap.ticker.remove(tick);
-            video.removeEventListener("loadedmetadata", onMeta);
+            progress.current = 0;
             ctx.revert();
         };
     }, [reduced]);
@@ -130,37 +96,16 @@ export default function Hero() {
                 </h1>
             </div>
 
-            {/* Hand video — scroll-scrubbed cinematic layer.
-                blend lives on the untransformed outer wrapper so the white
-                background multiplies into the cream canvas + masthead */}
+            {/* Opaque 3D anatomy naturally occludes the masthead; only the wrist edge fades. */}
             <div
-                className="pointer-events-none absolute inset-x-0 top-[16%] z-[2] flex justify-center mix-blend-multiply md:top-[12%]"
+                className="pointer-events-none absolute inset-x-0 top-[16%] z-[2] flex justify-center md:top-[12%]"
                 style={{
-                    WebkitMaskImage: "linear-gradient(to bottom, black 96%, transparent 100%)",
-                    maskImage: "linear-gradient(to bottom, black 96%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 94%, transparent 100%)",
+                    maskImage: "linear-gradient(to bottom, black 94%, transparent 100%)",
                 }}
             >
-                <div ref={wrapRef} className="will-change-transform">
-                    {reduced ? (
-                        <img
-                            data-testid="hero-still"
-                            src={poster}
-                            alt="White sculptural hand wearing SILVERSY 92.5 sterling silver rings and bracelet"
-                            className="aspect-square h-[52vh] object-cover md:aspect-video md:h-[74vh]"
-                        />
-                    ) : (
-                        <video
-                            ref={videoRef}
-                            data-testid="hero-video"
-                            src={mobile ? "/assets/hero-mobile-hd.mp4" : "/assets/hero-web-hd.mp4"}
-                            className="aspect-square h-[52vh] object-cover md:aspect-video md:h-[74vh]"
-                            muted
-                            playsInline
-                            preload="auto"
-                            poster={poster}
-                            aria-label="Hand wearing SILVERSY silver jewellery, animated by scrolling"
-                        />
-                    )}
+                <div ref={wrapRef} className="h-[52vh] w-full max-w-[1060px] will-change-transform md:h-[74vh]">
+                    <HeroHandVisual progress={progress} reduced={reduced} />
                 </div>
             </div>
 

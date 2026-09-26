@@ -102,22 +102,22 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "jwelery on the hand is very blurry make it hd clear stones should be shining same on bracelet. User approved keeping original hand movement and design unchanged."
+user_problem_statement: "User approved replacing the video with a 3D hand matching the reference: big rectangular ring on index finger, small round ring on ring finger, same stone-set bracelet, smooth scroll-driven hand closing and reopening."
 frontend:
-  - task: "Hero jewellery clarity and stone highlights"
+  - task: "Articulated 3D hero hand and correct jewellery placement"
     implemented: true
     working: NA
-    file: "frontend/src/components/Hero.jsx; scripts/enhance_hero.py"
+    file: "frontend/src/components/Hero.jsx; frontend/src/components/HeroHandVisual.jsx; frontend/src/three/HeroHand.jsx; frontend/src/three/handRig.js; frontend/src/three/HandJewellery.jsx"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
     status_history:
       - working: false
         agent: "user"
-        comment: "Rings and bracelet look blurry in supplied screenshot; stones should shine."
+        comment: "Original footage had ring apparently between fingers; requested replacing with 3D and explicitly approved recreation."
       - working: NA
         agent: "main"
-        comment: "Confirmed original 1920x1080 4Mb/s source was reduced to 1280x720 185Kb/s WebM or 720px mobile. Existing mask starting at 76% erased bracelet contrast. Rebuilt 86 original frames with feathered jewellery-only sharpening/local contrast and existing specular highlight enhancement; 1920x1080 desktop / 1080px-square mobile H264 CRF16 GOP6. Matched first-frame HD posters; changed mask to 96%, removed global blown-out CSS grade. No synthetic jewellery or new movement. Full source softness cannot be undone."
+        comment: "Locally hosted MIT-licensed skinned hand mesh, smoothed with Loop subdivision, flat joints reparented preserving bind transforms. Emerald ring is a child of index proximal bone; small solitaire is child of ring proximal bone; tennis bracelet child of wrist. Scroll uses damped quaternion articulation, GSAP original masthead morph retained. Transparent canvas/no multiply, desktop/mobile, image reduced-motion/error fallback, offscreen render pause. Smoke renders but jewellery contrast is weak; assess materials/highlights and actual bone motions."
 metadata:
   created_by: "main_agent"
   version: "1.0"
@@ -125,10 +125,10 @@ metadata:
   run_ui: true
 test_plan:
   current_focus:
-    - "Hero jewellery clarity and stone highlights"
+    - "Articulated 3D hero hand and correct jewellery placement"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 agent_communication:
   - agent: "main"
-    message: "Test actual video source dimensions/loading, forward/reverse scroll, masthead morph/nav, mobile/tablet/desktop layouts, source switch on breakpoint and reduced-motion HD poster. Compare first-frame ring and bracelet crops against old assets; check natural highlights with no halos/white-box regressions. No auth or backend changes."
+    message: "Test correct anatomical ring attachment open/mid/closed and reverse, anatomical curl, mobile/tablet/desktop viewport, masthead/nav regression, no old hero video loads, fallback/static image. canvas.__silversyRig exposes development rig for actual hierarchy/position diagnostics; host data-curl-progress updates physical pose. Current first smoke suggests weak material contrast on rings: report exact findings. Poster is actual lossless WebGL render of same scene."
